@@ -9,5 +9,7 @@ PMenu
 
 # Preview:
 http://prnt.sc/wl7a41
+# Discord
+https://discord.gg/4GXxrap
 # Download:
 https://github.com/WinstoneDev/ltd-frigo
