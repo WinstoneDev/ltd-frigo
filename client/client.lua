@@ -68,7 +68,7 @@ Citizen.CreateThread(function()
                 ESX.ShowHelpNotification('Appuyez ~INPUT_PICKUP~ pour accéder au ~b~frigo~s~.')
                 if IsControlJustPressed(1, 51) then
                     CreateMenu(LTD)
-				end
+		end
             end
         end
     end
