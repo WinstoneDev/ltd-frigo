@@ -82,16 +82,6 @@ function stringsplit(inputstr, sep)
     return t
 end
 
---[[function PMenu:CloseMenu(bypass)
-	if self.IsVisible and (not self.Base.Blocked or bypass) then
-		self.IsVisible = false
-		if self.Events["onExited"] then self.Events["onExited"](self.Data, self, true) end
-
-		exports.pichot_scaleform:SetMenuVisible(false)
-		self:resetMenu()
-	end
-end--]]
-
 function SetMenuVisible(bool)
 	IsVisible = bool
 end
