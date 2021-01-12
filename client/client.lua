@@ -18,7 +18,7 @@ local LTD = {
 			local check = btn.unkCheckbox
 			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 			local playerPed = PlayerPedId()
-            local coords = GetEntityCoords(playerPed)
+            		local coords = GetEntityCoords(playerPed)
         
             if btn == "Pain" then
                 TriggerServerEvent("shops:buypain")
