@@ -21,11 +21,11 @@ local LTD = {
             		local coords = GetEntityCoords(playerPed)
         
             if btn == "Pain" then
-                TriggerServerEvent("shops:buypain")
+                TriggerServerEvent("shops:buyitem", "pain", 1, 7)
             elseif btn == "Eau" then
-                TriggerServerEvent("shops:buyeau")
+        	TriggerServerEvent("shops:buyitem", "eau", 1, 6)
             elseif btn == "Téléphone" then
-                TriggerServerEvent("shops:buyphone")
+        	TriggerServerEvent("shops:buyitem", "phone", 1, 250)
             end
         end
     },
