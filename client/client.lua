@@ -13,19 +13,8 @@ local LTD = {
     Data = { currentMenu = "Articles disponibles:"},
     Events = {
         onSelected = function(self, _, btn, PMenu, menuData, currentButton, currentBtn, currentSlt, result, slide)
-			local slide = btn.slidenum
-			local btn = btn.name
-			local check = btn.unkCheckbox
-			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
-			local playerPed = PlayerPedId()
-            		local coords = GetEntityCoords(playerPed)
-        
-            if btn == "Pain" then
-                TriggerServerEvent("shops:buyitem", "pain", 1, 7)
-            elseif btn == "Eau" then
-        	TriggerServerEvent("shops:buyitem", "eau", 1, 6)
-            elseif btn == "Téléphone" then
-        	TriggerServerEvent("shops:buyitem", "phone", 1, 250)
+            if btn.name then
+                TriggerServerEvent("shops:buyitem", btn.item, 1, btn.price)
             end
         end
     },
@@ -33,9 +22,9 @@ local LTD = {
     Menu = {
         ["Articles disponibles:"] = {
             b = {
-                {name = "Pain", ask = "~g~$7", askX = true},
-                {name = "Eau", ask = "~g~$6", askX = true},
-                {name = "Téléphone", ask = "~g~$250", askX = true},
+                {name = "Pain", price = 7, item = "bread", askX = true},
+                {name = "Eau", price = 6, item = "water", askX = true},
+                {name = "Téléphone", price = 250, item = "phone", askX = true},
             }
         },
     }
@@ -62,13 +51,14 @@ Citizen.CreateThread(function()
         for w in pairs(ltdpoz) do
 
             local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
-            local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, ltdpoz[w].x, ltdpoz[w].y, ltdpoz[w].z)
+            local dest = vector3(ltdpoz[w].x, ltdpoz[w].y, ltdpoz[w].z)
+            local dist = GetDistanceBetweenCoords(plyCoords, dest, true)
 
             if dist <= 1.7 then
                 ESX.ShowHelpNotification('Appuyez ~INPUT_PICKUP~ pour accéder au ~b~frigo~s~.')
                 if IsControlJustPressed(1, 51) then
                     CreateMenu(LTD)
-		end
+		        end
             end
         end
     end
@@ -86,10 +76,8 @@ Citizen.CreateThread(function()
         AddTextComponentString("LTD South")
         EndTextCommandSetBlipName(blips)
     end
-end)
 
-Citizen.CreateThread(function()
-	for _, pos in pairs(blipsltdn) do
+    for _, pos in pairs(blipsltdn) do
         blips = AddBlipForCoord(pos.x, pos.y, pos.z)
         SetBlipSprite(blips, 52)
         SetBlipScale(blips, 0.7)
@@ -101,3 +89,5 @@ Citizen.CreateThread(function()
         EndTextCommandSetBlipName(blips)
     end
 end)
+
+
