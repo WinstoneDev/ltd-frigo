@@ -14,7 +14,7 @@ local LTD = {
     Events = {
         onSelected = function(self, _, btn, PMenu, menuData, currentButton, currentBtn, currentSlt, result, slide)
             if btn.name then
-                TriggerServerEvent("shops:buyitem", btn.item, 1, btn.price)
+                TriggerServerEvent("shops:buyitem", btn.item, 1, btn.price, btn.name)
             end
         end
     },
